@@ -5,6 +5,8 @@
  */
 package grafico;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -41,6 +43,8 @@ public class Principal extends javax.swing.JFrame {
         entradaAnguloText = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        mi_limpar = new javax.swing.JMenuItem();
+        mi_sair = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -92,7 +96,24 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.setBackground(new java.awt.Color(22, 20, 9));
 
-        jMenu1.setText("File");
+        jMenu1.setText("Iniciar");
+
+        mi_limpar.setText("Limpar Tela");
+        mi_limpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_limparActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mi_limpar);
+
+        mi_sair.setText("Sair");
+        mi_sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_sairActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mi_sair);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
@@ -107,12 +128,15 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1))
+                                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(13, 13, 13)
                                 .addComponent(entradaAnguloText, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -122,10 +146,7 @@ public class Principal extends javax.swing.JFrame {
                                 .addComponent(pararButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 31, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(0, 31, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -205,6 +226,19 @@ public class Principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_iniciarButtonActionPerformed
 
+    /**
+     *
+     * classe interna para tratamento de eventos de bot�es e itens de menu
+     */
+    private class Al_Eventos implements ActionListener {
+
+        public void actionPerformed(ActionEvent event) {
+            if(event.getSource() == mi_sair){
+                System.exit(0);
+            }
+        }
+    }
+
     private void iniciarButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iniciarButtonMouseClicked
     }//GEN-LAST:event_iniciarButtonMouseClicked
 
@@ -215,6 +249,14 @@ public class Principal extends javax.swing.JFrame {
     private void entradaAnguloTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entradaAnguloTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_entradaAnguloTextActionPerformed
+
+    private void mi_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_sairActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_mi_sairActionPerformed
+
+    private void mi_limparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_limparActionPerformed
+        this.jPanel1.repaint();
+    }//GEN-LAST:event_mi_limparActionPerformed
 
     /**
      * @param args the command line arguments
@@ -262,6 +304,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem mi_limpar;
+    private javax.swing.JMenuItem mi_sair;
     private javax.swing.JToggleButton pararButton;
     // End of variables declaration//GEN-END:variables
 }
