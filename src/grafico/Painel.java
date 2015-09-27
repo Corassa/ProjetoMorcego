@@ -26,17 +26,19 @@ public class Painel extends JPanel {
     void desenharPlano(PlanoCartesiano plano) {
 
         ArrayList<Ponto> pontos = plano.getPontos();
-        
+        Graphics2D g2d = (Graphics2D) this.getGraphics();
+
         double eixo_x = plano.getEixo_x();
         double eixo_y = plano.getEixo_y();
 
         for (int i = 1; i < pontos.size(); i++) {
 
-            Graphics2D g2d = (Graphics2D) this.getGraphics();
+            g2d.draw(new Line2D.Double(pontos.get(i - 1).getX(), pontos.get(i - 1).getY(), pontos.get(i).getX(), pontos.get(i).getY()));
 
-            g2d.draw(new Line2D.Double(/*eixo_x, eixo_y,*/pontos.get(i - 1).getX(), pontos.get(i - 1).getY(), pontos.get(i).getX(), pontos.get(i).getY()));
-
-            //g2d.drawString("" + i, (int) pontos.get(i).getX(), (int) pontos.get(i).getY());
+            g2d.drawString("" + i, (int) pontos.get(i).getX(), (int) pontos.get(i).getY());
         }
+        //g2d.drawString("o", (int) pontos.get(pontos.size() - 1).getX(), (int) pontos.get(pontos.size() - 1).getY());
+        g2d.draw(new Line2D.Double(pontos.get(0).getX(), pontos.get(0).getY(), pontos.get(pontos.size() - 1).getX(), pontos.get(pontos.size() - 1).getY()));
+
     }
 }
