@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package grafico;
+package prj.morcego.grafico;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -32,7 +32,7 @@ public class PlanoCartesiano extends JPanel {
     /*
      * Adiciona todos os pontos que forem medidos
      */
-    void addPonto(Ponto p) {
+    public void addPonto(Ponto p) {
         Ponto p_aux = new Ponto();
 
         if (p.getAngulo() >= 90 && p.getAngulo() <= 270) {

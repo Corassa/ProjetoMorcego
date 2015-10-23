@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package grafico;
+package prj.morcego.grafico;
 
 /**
  *Ciaçao e um plano cartesiano

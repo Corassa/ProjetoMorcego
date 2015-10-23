@@ -3,14 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package grafico;
+package prj.morcego.interfaces;
 
+import prj.morcego.grafico.PlanoCartesiano;
+import prj.morcego.grafico.Ponto;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
+import prj.morcego.serial.Serial;
+import prj.morcego.grafico.PlanoCartesiano;
+import prj.morcego.grafico.Ponto;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -34,13 +48,12 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
         jPanel1 = new Painel();
         iniciarButton = new javax.swing.JToggleButton();
         pararButton = new javax.swing.JToggleButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        entradaAnguloText = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         mi_limpar = new javax.swing.JMenuItem();
@@ -57,7 +70,7 @@ public class Principal extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGap(0, 376, Short.MAX_VALUE)
         );
 
         iniciarButton.setText("Iniciar");
@@ -86,13 +99,9 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Informe o angulo e clique em iniciar");
+        jLabel1.setText("Clique em inicar para realizar a leitura");
 
-        entradaAnguloText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                entradaAnguloTextActionPerformed(evt);
-            }
-        });
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/morcego-icone.png"))); // NOI18N
 
         jMenuBar1.setBackground(new java.awt.Color(22, 20, 9));
 
@@ -126,42 +135,37 @@ public class Principal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addComponent(entradaAnguloText, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(iniciarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(pararButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 31, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addGap(25, 25, 25))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(entradaAnguloText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(iniciarButton)
-                    .addComponent(pararButton)
-                    .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(pararButton)
+                            .addComponent(iniciarButton)
+                            .addComponent(jButton2)))
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -175,6 +179,11 @@ public class Principal extends javax.swing.JFrame {
         this.jPanel1.repaint();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    public static int centro_x = 0;
+    public static int centro_y = 0;
+
+    private ArrayList<Integer> dadosLidos = new ArrayList<Integer>();
+
     private void iniciarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarButtonActionPerformed
 
         iniciarButton.setSelected(false);
@@ -184,41 +193,39 @@ public class Principal extends javax.swing.JFrame {
             @Override
             public void run() {
 
-                int angulo = 0;
-
                 //Cria um plano cartesiano
                 PlanoCartesiano plano = new PlanoCartesiano();
                 //adiciona como base o centro do painel
-                plano.setEixo_x(jPanel1.getWidth() / 2);
-                plano.setEixo_y(jPanel1.getHeight() / 2);
+                centro_x = jPanel1.getWidth() / 2;
+                centro_y = jPanel1.getHeight() / 2;
 
                 try {
-                    angulo = Integer.parseInt(entradaAnguloText.getText());
-                } catch (NumberFormatException nfe) {
-                    JOptionPane.showMessageDialog(null, "Erro!\nInforme um valor para o angulo", "Erro", angulo);
-                }
-                for (int ang = 0; ang <= 360; ang += angulo) {
-                    //faz a leitura do pontos
-                    Ponto p = new Ponto();
-                    p.setAngulo(ang);
-
-                    Random gerador = new Random();
-
-                    int numero = gerador.nextInt(250);
-
-                    p.setDist(numero);
-
-                    //decompoe os calores de x e y
-                    p.decompoePonto();
-
-                    //adiciona ao plano o ponto
-                    plano.addPonto(p);
+                    Serial serial = new Serial();
+                    serial.initialize();
+                    System.out.println("inicio de leitura");
+                    Thread.sleep(15000);
+                    serial.close();
+                    dadosLidos = serial.getLidos();
+                    System.out.println("fim de leitura");
+                } catch (IOException ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
+                /*desenha as leituras*/
+                plano.setEixo_x(centro_x);
+                plano.setEixo_y(centro_y);
+                try {
+                    desenha(plano);
+                } catch (IOException ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 //desenhar os pontos
                 ((Painel) Principal.this.jPanel1).desenharPlano(plano);
 
             }
+
         };
 
         Thread t = new Thread(myThread);
@@ -227,15 +234,50 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_iniciarButtonActionPerformed
 
     /**
+     * @return the dadosLidos
+     */
+    public ArrayList<Integer> getDadosLidos() {
+        return dadosLidos;
+    }
+
+    /**
+     * @param dadosLidos the dadosLidos to set
+     */
+    public void setDadosLidos(ArrayList<Integer> dadosLidos) {
+        this.dadosLidos = dadosLidos;
+    }
+
+    /**
      *
      * classe interna para tratamento de eventos de bot�es e itens de menu
      */
     private class Al_Eventos implements ActionListener {
 
         public void actionPerformed(ActionEvent event) {
-            if(event.getSource() == mi_sair){
+            if (event.getSource() == mi_sair) {
                 System.exit(0);
             }
+        }
+    }
+
+    private void desenha(PlanoCartesiano plano) throws IOException {
+        //Iniciando leitura serial
+        System.out.println("Tamanho do vetor " + getDadosLidos().size());
+        int angulo = 180 / getDadosLidos().size();
+        int ang = 0;
+
+        for (int i = 0; i < getDadosLidos().size(); i++) {
+            //faz a leitura do pontos
+            Ponto p = new Ponto();
+            p.setAngulo(ang += angulo);
+
+            p.setDist(getDadosLidos().get(i) * 10);
+
+            //decompoe os calores de x e y
+            p.decompoePonto();
+
+            //adiciona ao plano o ponto
+            plano.addPonto(p);
         }
     }
 
@@ -244,11 +286,8 @@ public class Principal extends javax.swing.JFrame {
 
     private void pararButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pararButtonActionPerformed
         pararButton.setSelected(false);
+        System.exit(0);
     }//GEN-LAST:event_pararButtonActionPerformed
-
-    private void entradaAnguloTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entradaAnguloTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_entradaAnguloTextActionPerformed
 
     private void mi_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_sairActionPerformed
         System.exit(0);
@@ -295,11 +334,10 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField entradaAnguloText;
     private javax.swing.JToggleButton iniciarButton;
     private javax.swing.JButton jButton2;
-    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
