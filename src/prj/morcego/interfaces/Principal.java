@@ -9,6 +9,7 @@ import prj.morcego.grafico.PlanoCartesiano;
 import prj.morcego.grafico.Ponto;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -55,6 +56,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         mi_limpar = new javax.swing.JMenuItem();
         mi_sair = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -69,7 +71,7 @@ public class Principal extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 376, Short.MAX_VALUE)
+            .addGap(0, 407, Short.MAX_VALUE)
         );
 
         iniciarButton.setText("Iniciar");
@@ -103,6 +105,14 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1.setBackground(new java.awt.Color(22, 20, 9));
 
         jMenu1.setText("Iniciar");
+
+        jMenuItem1.setText("Salvar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
 
         mi_limpar.setText("Limpar Tela");
         mi_limpar.addActionListener(new java.awt.event.ActionListener() {
@@ -146,19 +156,19 @@ public class Principal extends javax.swing.JFrame {
                                 .addComponent(pararButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(25, 172, Short.MAX_VALUE))))
+                        .addGap(75, 172, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pararButton)
                     .addComponent(iniciarButton)
+                    .addComponent(pararButton)
                     .addComponent(jButton2))
-                .addGap(13, 13, 13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -174,11 +184,20 @@ public class Principal extends javax.swing.JFrame {
     public static int centro_x = 0;
     public static int centro_y = 0;
 
-    private ArrayList<Integer> dadosLidos = new ArrayList<Integer>();
+    private ArrayList<Ponto> pontosLidos = new ArrayList<Ponto>();
+    Serial serial;
+
+    //ControlePorta ardCon = new ControlePorta("COM3",9600); /*Windows*/
 
     private void iniciarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarButtonActionPerformed
-
         iniciarButton.setSelected(false);
+        //this.jPanel1.repaint();
+        try {
+            serial = new Serial();
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        serial.initialize();/*incializa a leitora da porta serial*/
 
         Runnable myThread = new Runnable() {
 
@@ -191,27 +210,30 @@ public class Principal extends javax.swing.JFrame {
                 centro_x = jPanel1.getWidth() / 2;
                 centro_y = jPanel1.getHeight() / 2;
 
-                try {
-                    Serial serial = new Serial();
-                    serial.initialize();
-                    System.out.println("inicio de leitura");
-                    Thread.sleep(15000);
-                    serial.close();
-                    dadosLidos = serial.getLidos();
-                    System.out.println("fim de leitura");
-                } catch (IOException ex) {
-                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-                /*desenha as leituras*/
+                /*seta o centro da imagem como sendo o ponto [0,0]*/
                 plano.setEixo_x(centro_x);
                 plano.setEixo_y(centro_y);
+
+                for (int i = 0; i < 22; i++) {
+                    serial.enviaDados(1); //envia 1 para acender o led
+                    serial.enviaDados(3); //envia 3 para fazer uma eitura
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+
+                serial.close(); /*para de ler a serial*/
+
+                pontosLidos = serial.getPontos_lidos();/*salva os pontos, um ponto é composto por uma distância e por um ângulo*/
+
+                System.out.println("fim de leitura");
+
                 try {
                     desenha(plano);
                 } catch (IOException ex) {
-                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                    //Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 //desenhar os pontos
                 ((Painel) Principal.this.jPanel1).desenharPlano(plano);
@@ -224,20 +246,6 @@ public class Principal extends javax.swing.JFrame {
         t.start();
 
     }//GEN-LAST:event_iniciarButtonActionPerformed
-
-    /**
-     * @return the dadosLidos
-     */
-    public ArrayList<Integer> getDadosLidos() {
-        return dadosLidos;
-    }
-
-    /**
-     * @param dadosLidos the dadosLidos to set
-     */
-    public void setDadosLidos(ArrayList<Integer> dadosLidos) {
-        this.dadosLidos = dadosLidos;
-    }
 
     /**
      *
@@ -253,23 +261,16 @@ public class Principal extends javax.swing.JFrame {
     }
 
     private void desenha(PlanoCartesiano plano) throws IOException {
+
         //Iniciando leitura serial
-        System.out.println("Tamanho do vetor " + getDadosLidos().size());
-        int angulo = 180 / getDadosLidos().size();
-        int ang = 0;
+        System.out.println("Quantidade de pontos lidos " + pontosLidos.size());
 
-        for (int i = 0; i < getDadosLidos().size(); i++) {
-            //faz a leitura do pontos
-            Ponto p = new Ponto();
-            p.setAngulo(ang += angulo);
+        for (int i = 0; i < pontosLidos.size(); i++) {
 
-            p.setDist(getDadosLidos().get(i) * 10);
-
-            //decompoe os calores de x e y
-            p.decompoePonto();
-
+            pontosLidos.get(i).decompoePonto();
+            System.out.println(pontosLidos.get(i).getX() + " " + pontosLidos.get(i).getY());
             //adiciona ao plano o ponto
-            plano.addPonto(p);
+            plano.addPonto(pontosLidos.get(i));
         }
     }
 
@@ -278,7 +279,8 @@ public class Principal extends javax.swing.JFrame {
 
     private void pararButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pararButtonActionPerformed
         pararButton.setSelected(false);
-        System.exit(0);
+        serial.enviaDados(2);
+        serial.close();
     }//GEN-LAST:event_pararButtonActionPerformed
 
     private void mi_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_sairActionPerformed
@@ -288,6 +290,14 @@ public class Principal extends javax.swing.JFrame {
     private void mi_limparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_limparActionPerformed
         this.jPanel1.repaint();
     }//GEN-LAST:event_mi_limparActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        try {
+            ((Painel) Principal.this.jPanel1).salvarImagem("/home/ricardo/", centro_x * 2, centro_y * 2);
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -332,6 +342,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem mi_limpar;
     private javax.swing.JMenuItem mi_sair;

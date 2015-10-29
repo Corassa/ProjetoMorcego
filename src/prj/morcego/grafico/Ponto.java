@@ -5,6 +5,14 @@
  */
 package prj.morcego.grafico;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import prj.morcego.interfaces.Painel;
+import prj.morcego.interfaces.Principal;
+import static prj.morcego.interfaces.Principal.centro_x;
+import static prj.morcego.interfaces.Principal.centro_y;
+
 /**
  *Ciaçao e um plano cartesiano
  * @author ricardo
@@ -25,8 +33,8 @@ public class Ponto {
     
     //crias as coordenadas a partir da distancia e do angulo
     public void decompoePonto(){
-        setX((Math.cos(angulo) * dist));
-        setY((Math.sin(angulo) * dist));
+        setX((Math.cos(angulo) * dist)*10);
+        setY((Math.sin(angulo) * dist)*10);
     }
      /**
      * @return the x

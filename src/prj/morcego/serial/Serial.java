@@ -2,11 +2,7 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
-
-
  http://playground.arduino.cc/Interfacing/Java
-
-
  */
 package prj.morcego.serial;
 
@@ -59,16 +55,18 @@ public class Serial implements SerialPortEventListener {
      * Default bits per second for COM port.
      */
     private static final int DATA_RATE = 9600;
-    
+
     private ArrayList<Integer> lidos = new ArrayList<Integer>();
+
+    private ArrayList<Ponto> pontos_lidos = new ArrayList<Ponto>();
 
     public Serial() throws IOException {
     }
 
     public void initialize() {
-                // the next line is for Raspberry Pi and 
+        // the next line is for Raspberry Pi and 
         // gets us into the while loop and was suggested here was suggested http://www.raspberrypi.org/phpBB3/viewtopic.php?f=81&t=32186
-        System.setProperty("gnu.io.rxtx.SerialPorts", "/dev/ttyACM0");
+        System.setProperty("gnu.io.rxtx.SerialPorts", "/dev/ttyUSB0");
 
         CommPortIdentifier portId = null;
         Enumeration portEnum = CommPortIdentifier.getPortIdentifiers();
@@ -126,15 +124,27 @@ public class Serial implements SerialPortEventListener {
         if (oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
             try {
                 String inputLine = input.readLine();
-
-                System.out.println(Integer.parseInt(inputLine.replace(".00", "")));
-                
-                getLidos().add(Integer.parseInt(inputLine.replace(".00", "")));
+                String[] lp = inputLine.split(" ");
+                int dist = Integer.parseInt(lp[0].replace(".00", ""));
+                int ang = Integer.parseInt(lp[1]);
+                System.out.println("dist "+dist+" ang "+ang);
+                Ponto p = new Ponto();
+                p.setDist(dist);
+                p.setAngulo(ang);
+                pontos_lidos.add(p);
             } catch (Exception e) {
                 System.err.println("Erro aqui tchê ! " + e.toString());
             }
         }
         // Ignore all the other eventTypes, but you should consider the other ones.
+    }
+
+    public void enviaDados(int opcao) {
+        try {
+            output.write(opcao);//escreve o valor na porta serial para ser enviado
+        } catch (IOException ex) {
+            System.err.println(ex.toString());
+        }
     }
 
     /**
@@ -149,5 +159,19 @@ public class Serial implements SerialPortEventListener {
      */
     public void setLidos(ArrayList<Integer> lidos) {
         this.lidos = lidos;
+    }
+
+    /**
+     * @return the pontos_lidos
+     */
+    public ArrayList<Ponto> getPontos_lidos() {
+        return pontos_lidos;
+    }
+
+    /**
+     * @param pontos_lidos the pontos_lidos to set
+     */
+    public void setPontos_lidos(ArrayList<Ponto> pontos_lidos) {
+        this.pontos_lidos = pontos_lidos;
     }
 }
