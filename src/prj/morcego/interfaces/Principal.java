@@ -36,8 +36,42 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
+    int escalaX;
+    int escalaY;
+    String serialPort;
+
     public Principal() {
+        serialPort = "/dev/ttyUSB0";
         initComponents();
+        jProgressBar.setVisible(false);
+        jTextField1.setText("" + anguloInicial);
+
+        centro_x = jPanel1.getWidth() / 2;
+        centro_y = jPanel1.getHeight() / 2;
+
+        escalaX = centro_x;
+        escalaY = centro_y;
+        textFieldCentroX.setText("" + centro_x);
+        textFieldCentroY.setText("" + centro_y);
+
+        jButton3.setOpaque(false);
+        jButton3.setContentAreaFilled(false);
+        jButton3.setBorderPainted(false);
+        jButton4.setOpaque(false);
+        jButton4.setContentAreaFilled(false);
+        jButton4.setBorderPainted(false);
+        jButton5.setOpaque(false);
+        jButton5.setContentAreaFilled(false);
+        jButton5.setBorderPainted(false);
+        jButton6.setOpaque(false);
+        jButton6.setContentAreaFilled(false);
+        jButton6.setBorderPainted(false);
+        menos10.setOpaque(false);
+        menos10.setContentAreaFilled(false);
+        menos10.setBorderPainted(false);
+        mais10.setOpaque(false);
+        mais10.setContentAreaFilled(false);
+        mais10.setBorderPainted(false);
     }
 
     /**
@@ -49,17 +83,60 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFrame1 = new javax.swing.JFrame();
+        jFrame2 = new javax.swing.JFrame();
         jPanel1 = new Painel();
-        iniciarButton = new javax.swing.JToggleButton();
+        jTextField1 = new javax.swing.JTextField();
+        textFieldCentroX = new javax.swing.JTextField();
+        textFieldCentroY = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        mais10 = new javax.swing.JButton();
+        menos10 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         pararButton = new javax.swing.JToggleButton();
+        iniciarButton = new javax.swing.JToggleButton();
         jButton2 = new javax.swing.JButton();
+        jProgressBar = new javax.swing.JProgressBar();
         jLabel1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
         mi_limpar = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         mi_sair = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFrame1Layout.setVerticalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jFrame2Layout = new javax.swing.GroupLayout(jFrame2.getContentPane());
+        jFrame2.getContentPane().setLayout(jFrame2Layout);
+        jFrame2Layout.setHorizontalGroup(
+            jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFrame2Layout.setVerticalGroup(
+            jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,14 +144,75 @@ public class Principal extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 500, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 407, Short.MAX_VALUE)
+            .addGap(0, 500, Short.MAX_VALUE)
         );
 
-        iniciarButton.setText("Iniciar");
+        jTextField1.setText(" ");
+
+        textFieldCentroX.setText(" ");
+
+        textFieldCentroY.setText(" ");
+
+        jLabel2.setText("0x");
+
+        jLabel3.setText("0y");
+
+        jLabel4.setText("º");
+
+        mais10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/prj/morcego/img/rotacionar1.png"))); // NOI18N
+        mais10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mais10ActionPerformed(evt);
+            }
+        });
+
+        menos10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/prj/morcego/img/rotacionar2.png"))); // NOI18N
+        menos10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menos10ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/prj/morcego/img/seta-cima.png"))); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/prj/morcego/img/seta-esquerda.png"))); // NOI18N
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/prj/morcego/img/seta-direita.png"))); // NOI18N
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/prj/morcego/img/seta-baixo.png"))); // NOI18N
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        pararButton.setText("Parar");
+        pararButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pararButtonActionPerformed(evt);
+            }
+        });
+
+        iniciarButton.setText("Ler");
         iniciarButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 iniciarButtonMouseClicked(evt);
@@ -86,13 +224,6 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        pararButton.setText("Parar");
-        pararButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pararButtonActionPerformed(evt);
-            }
-        });
-
         jButton2.setText("Limpar Tela");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,19 +231,15 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Clique em inicar para realizar a leitura");
+        jLabel1.setFont(new java.awt.Font("Droid Serif", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(4, 2, 2));
+        jLabel1.setText("Projeto Morcego");
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/prj/morcego/img/morcego-icone.png"))); // NOI18N
 
         jMenuBar1.setBackground(new java.awt.Color(22, 20, 9));
 
         jMenu1.setText("Iniciar");
-
-        jMenuItem1.setText("Salvar");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem1);
 
         mi_limpar.setText("Limpar Tela");
         mi_limpar.addActionListener(new java.awt.event.ActionListener() {
@@ -121,6 +248,14 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(mi_limpar);
+
+        jMenuItem1.setText("Salvar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
 
         mi_sair.setText("Sair");
         mi_sair.addActionListener(new java.awt.event.ActionListener() {
@@ -132,7 +267,39 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Opções");
+
+        jMenu3.setText("Serial Port");
+
+        jMenuItem5.setText("/dev/ttyUSB0");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem5);
+
+        jMenuItem2.setText("/dev/ttyUSB1");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem2);
+
+        jMenuItem3.setText("COM3");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem3);
+
+        jMenuItem4.setText("Bluetoth");
+        jMenu3.add(jMenuItem4);
+
+        jMenu2.add(jMenu3);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -145,32 +312,94 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(iniciarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(pararButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(75, 172, Short.MAX_VALUE))))
+                                .addComponent(mais10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(menos10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(pararButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(iniciarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(48, 48, 48)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(textFieldCentroX, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel4))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(textFieldCentroY, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(137, 137, 137)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(iniciarButton)
-                    .addComponent(pararButton)
-                    .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(iniciarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pararButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(mais10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(menos10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(textFieldCentroX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(textFieldCentroY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -186,10 +415,15 @@ public class Principal extends javax.swing.JFrame {
 
     private ArrayList<Ponto> pontosLidos = new ArrayList<Ponto>();
     Serial serial;
-
+    private int anguloInicial = 0;
     //ControlePorta ardCon = new ControlePorta("COM3",9600); /*Windows*/
 
     private void iniciarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarButtonActionPerformed
+        try {
+            ((Painel) Principal.this.jPanel1).desenhaRobo((int)centro_x,(int) centro_y);
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         iniciarButton.setSelected(false);
         //this.jPanel1.repaint();
         try {
@@ -206,14 +440,8 @@ public class Principal extends javax.swing.JFrame {
 
                 //Cria um plano cartesiano
                 PlanoCartesiano plano = new PlanoCartesiano();
-                //adiciona como base o centro do painel
-                centro_x = jPanel1.getWidth() / 2;
-                centro_y = jPanel1.getHeight() / 2;
-
-                /*seta o centro da imagem como sendo o ponto [0,0]*/
-                plano.setEixo_x(centro_x);
-                plano.setEixo_y(centro_y);
-
+                jProgressBar.setVisible(true);
+                jProgressBar.setIndeterminate(true);
                 for (int i = 0; i < 22; i++) {
                     serial.enviaDados(1); //envia 1 para acender o led
                     serial.enviaDados(3); //envia 3 para fazer uma eitura
@@ -223,17 +451,26 @@ public class Principal extends javax.swing.JFrame {
                         Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
+                jProgressBar.setVisible(false);
+                jProgressBar.setIndeterminate(false);
 
                 serial.close(); /*para de ler a serial*/
 
                 pontosLidos = serial.getPontos_lidos();/*salva os pontos, um ponto é composto por uma distância e por um ângulo*/
 
-                System.out.println("fim de leitura");
+                /*atualiza dos dados mostrados*/
+                textFieldCentroX.setText("" + centro_x);
+                textFieldCentroY.setText("" + centro_y);
 
-                try {
-                    desenha(plano);
-                } catch (IOException ex) {
-                    //Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                plano.setEixo_x(centro_x);
+                plano.setEixo_y(centro_y);
+                System.out.println("Quantidade de pontos lidos " + pontosLidos.size());
+                for (int i = 0; i < pontosLidos.size(); i++) {
+                    pontosLidos.get(i).setAnguloInicial(anguloInicial);
+                    pontosLidos.get(i).decompoePonto(escalaX / 80, escalaY / 80);
+                    System.out.println(pontosLidos.get(i).getX() + " " + pontosLidos.get(i).getY());
+                    //adiciona ao plano o ponto
+                    plano.addPonto(pontosLidos.get(i));
                 }
                 //desenhar os pontos
                 ((Painel) Principal.this.jPanel1).desenharPlano(plano);
@@ -260,20 +497,6 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
-    private void desenha(PlanoCartesiano plano) throws IOException {
-
-        //Iniciando leitura serial
-        System.out.println("Quantidade de pontos lidos " + pontosLidos.size());
-
-        for (int i = 0; i < pontosLidos.size(); i++) {
-
-            pontosLidos.get(i).decompoePonto();
-            System.out.println(pontosLidos.get(i).getX() + " " + pontosLidos.get(i).getY());
-            //adiciona ao plano o ponto
-            plano.addPonto(pontosLidos.get(i));
-        }
-    }
-
     private void iniciarButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iniciarButtonMouseClicked
     }//GEN-LAST:event_iniciarButtonMouseClicked
 
@@ -281,6 +504,7 @@ public class Principal extends javax.swing.JFrame {
         pararButton.setSelected(false);
         serial.enviaDados(2);
         serial.close();
+        jProgressBar.setVisible(false);
     }//GEN-LAST:event_pararButtonActionPerformed
 
     private void mi_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_sairActionPerformed
@@ -298,6 +522,50 @@ public class Principal extends javax.swing.JFrame {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void mais10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mais10ActionPerformed
+        anguloInicial += 10;
+        jTextField1.setText("" + anguloInicial);
+    }//GEN-LAST:event_mais10ActionPerformed
+
+    private void menos10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menos10ActionPerformed
+        anguloInicial -= 10;
+        jTextField1.setText("" + anguloInicial);
+    }//GEN-LAST:event_menos10ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        centro_y -= 10;
+        textFieldCentroY.setText("" + centro_y);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        centro_y += 10;
+        textFieldCentroY.setText("" + centro_y);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        centro_x += 10;
+        textFieldCentroX.setText("" + centro_x);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        centro_x -= 10;
+        textFieldCentroX.setText("" + centro_x);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        serial.setPort("/dev/ttyUSB0");
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        serial.setPort("/dev/ttyUSB1");
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        serial.setPort("COM3");
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -338,14 +606,35 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton iniciarButton;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JFrame jFrame1;
+    private javax.swing.JFrame jFrame2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JProgressBar jProgressBar;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton mais10;
+    private javax.swing.JButton menos10;
     private javax.swing.JMenuItem mi_limpar;
     private javax.swing.JMenuItem mi_sair;
     private javax.swing.JToggleButton pararButton;
+    private javax.swing.JTextField textFieldCentroX;
+    private javax.swing.JTextField textFieldCentroY;
     // End of variables declaration//GEN-END:variables
 }

@@ -62,11 +62,13 @@ public class Serial implements SerialPortEventListener {
 
     public Serial() throws IOException {
     }
+    
+    private String port = "/dev/ttyUSB0";
 
     public void initialize() {
         // the next line is for Raspberry Pi and 
         // gets us into the while loop and was suggested here was suggested http://www.raspberrypi.org/phpBB3/viewtopic.php?f=81&t=32186
-        System.setProperty("gnu.io.rxtx.SerialPorts", "/dev/ttyUSB0");
+        System.setProperty("gnu.io.rxtx.SerialPorts", getPort() /*"/dev/ttyUSB0"*/ );
 
         CommPortIdentifier portId = null;
         Enumeration portEnum = CommPortIdentifier.getPortIdentifiers();
@@ -127,7 +129,7 @@ public class Serial implements SerialPortEventListener {
                 String[] lp = inputLine.split(" ");
                 int dist = Integer.parseInt(lp[0].replace(".00", ""));
                 int ang = Integer.parseInt(lp[1]);
-                System.out.println("dist "+dist+" ang "+ang);
+                System.out.println("dist " + dist + " ang " + ang);
                 Ponto p = new Ponto();
                 p.setDist(dist);
                 p.setAngulo(ang);
@@ -173,5 +175,19 @@ public class Serial implements SerialPortEventListener {
      */
     public void setPontos_lidos(ArrayList<Ponto> pontos_lidos) {
         this.pontos_lidos = pontos_lidos;
+    }
+
+    /**
+     * @return the port
+     */
+    public String getPort() {
+        return port;
+    }
+
+    /**
+     * @param port the port to set
+     */
+    public void setPort(String port) {
+        this.port = port;
     }
 }

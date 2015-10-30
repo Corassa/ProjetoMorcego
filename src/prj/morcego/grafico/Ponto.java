@@ -23,6 +23,7 @@ public class Ponto {
     private double y;
     private double angulo;
     private double dist;
+    private int anguloInicial;
     
     public void Ponto(){
         setX(0);
@@ -32,9 +33,9 @@ public class Ponto {
     }
     
     //crias as coordenadas a partir da distancia e do angulo
-    public void decompoePonto(){
-        setX((Math.cos(angulo) * dist)*10);
-        setY((Math.sin(angulo) * dist)*10);
+    public void decompoePonto(double escalax,double escalay){
+        setX((Math.cos(angulo+anguloInicial) * dist)*escalax);
+        setY((Math.sin(angulo+anguloInicial) * dist)*escalay);
     }
      /**
      * @return the x
@@ -91,6 +92,20 @@ public class Ponto {
      */
     public void setY(double y) {
         this.y = y;
+    }
+
+    /**
+     * @return the anguloInicial
+     */
+    public double getAnguloInicial() {
+        return anguloInicial;
+    }
+
+    /**
+     * @param anguloInicial the anguloInicial to set
+     */
+    public void setAnguloInicial(int anguloInicial) {
+        this.anguloInicial = anguloInicial;
     }
     
 }

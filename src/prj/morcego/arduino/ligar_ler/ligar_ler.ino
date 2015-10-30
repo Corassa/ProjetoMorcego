@@ -1,6 +1,11 @@
 #include "LM35.h"
+#include <Servo.h>
 
-int ledPin =  13; //atribui o pino 13 a variável ledPin 
+const int trigPin = 12;
+const int echoPin = 13;
+Servo motor;
+
+int ledPin =  7; //atribui o pino 13 a variável ledPin 
 int dado; //variável que receberá os dados da porta serial
 
 
@@ -11,7 +16,13 @@ const float CELSIUS_BASE = 0.4887585532746823069403714565; //Base de conversão 
 
 void setup(){
   Serial.begin(9600);//frequência da porta serial
-   pinMode(ledPin,OUTPUT); //define o pino o ledPin como saída
+  pinMode(ledPin,OUTPUT); //define o pino o ledPin como saída
+  Serial.begin(9600);
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  // Aguarda 1 seg antes de acessar as informações do sensor
+  delay(1000);
+  motor.attach(3);
 }
 int ang = 0;
 void loop(){
@@ -39,4 +50,13 @@ void loop(){
 float ler(){
   int temp = (analogRead(LM35) * CELSIUS_BASE); 
   return temp;
+  /*digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  unsigned long duracao = pulseIn(echoPin, HIGH);
+  int distancia = duracao / 58;
+  motor.write(ang);
+  return(distancia);*/
 }
