@@ -36,27 +36,29 @@ void loop(){
            digitalWrite(ledPin,LOW); //desliga o pino ledPin
            break;
         case 3:
+          for(i = 0; i<180 ; i+=10){
+           motor.write(i);
            Serial.print(ler());
            Serial.print(" ");
-           Serial.print(ang);
+           Serial.print(i);
            ang += 10;
            Serial.print("\n");
            delay(REFRESH_RATE);
            break;
+         }
     }
   }
 }
 
 float ler(){
-  int temp = (analogRead(LM35) * CELSIUS_BASE); 
-  return temp;
-  /*digitalWrite(trigPin, LOW);
+  /*int temp = (analogRead(LM35) * CELSIUS_BASE); 
+  return temp;*/
+  digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
   digitalWrite(trigPin, HIGH);
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
   unsigned long duracao = pulseIn(echoPin, HIGH);
   int distancia = duracao / 58;
-  motor.write(ang);
-  return(distancia);*/
+  return(distancia);
 }

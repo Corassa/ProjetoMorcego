@@ -442,7 +442,9 @@ public class Principal extends javax.swing.JFrame {
                 PlanoCartesiano plano = new PlanoCartesiano();
                 jProgressBar.setVisible(true);
                 jProgressBar.setIndeterminate(true);
-                for (int i = 0; i < 22; i++) {
+                serial.enviaDados(1); //envia 1 para acender o led
+                serial.enviaDados(3); //envia 3 para fazer uma eitura
+                /*for (int i = 0; i < 22; i++) {
                     serial.enviaDados(1); //envia 1 para acender o led
                     serial.enviaDados(3); //envia 3 para fazer uma eitura
                     try {
@@ -450,7 +452,7 @@ public class Principal extends javax.swing.JFrame {
                     } catch (InterruptedException ex) {
                         Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }
+                }*/
                 jProgressBar.setVisible(false);
                 jProgressBar.setIndeterminate(false);
 
