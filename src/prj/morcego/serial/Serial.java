@@ -127,7 +127,7 @@ public class Serial implements SerialPortEventListener {
             try {
                 String inputLine = input.readLine();
                 String[] lp = inputLine.split(" ");
-                int dist = Integer.parseInt(lp[0].replace(".00", ""));
+                double dist = Double.parseDouble(lp[0]);
                 int ang = Integer.parseInt(lp[1]);
                 System.out.println("dist " + dist + " ang " + ang);
                 Ponto p = new Ponto();

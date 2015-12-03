@@ -29,7 +29,7 @@ public class Ponto {
         setX(0);
         setY(0);
         setAngulo(0);
-        setDist(0);
+        setDist(0.0);
     }
     
     //crias as coordenadas a partir da distancia e do angulo
@@ -76,7 +76,7 @@ public class Ponto {
     /**
      * @param dist the dist to set
      */
-    public void setDist(int dist) {
+    public void setDist(Double dist) {
         this.dist = dist;
     }
 

@@ -5,25 +5,13 @@
  */
 package prj.morcego.interfaces;
 
-import prj.morcego.grafico.PlanoCartesiano;
-import prj.morcego.grafico.Ponto;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
-import javax.swing.JOptionPane;
 import prj.morcego.serial.Serial;
 import prj.morcego.grafico.PlanoCartesiano;
 import prj.morcego.grafico.Ponto;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -42,29 +30,29 @@ public class Principal extends javax.swing.JFrame {
 
     public Principal() {
         initComponents();
-        jProgressBar.setVisible(false);
-        jTextField1.setText("" + anguloInicial);
+        progressBar.setVisible(false);
+        grauTextField.setText("" + anguloInicial);
 
         centro_x = jPanel1.getWidth() / 2;
         centro_y = jPanel1.getHeight() / 2;
 
         escalaX = centro_x;
         escalaY = centro_y;
-        textFieldCentroX.setText("" + centro_x);
-        textFieldCentroY.setText("" + centro_y);
+        textCentoX.setText("" + centro_x);
+        textCentroY.setText("" + centro_y);
 
-        jButton3.setOpaque(false);
-        jButton3.setContentAreaFilled(false);
-        jButton3.setBorderPainted(false);
-        jButton4.setOpaque(false);
-        jButton4.setContentAreaFilled(false);
-        jButton4.setBorderPainted(false);
-        jButton5.setOpaque(false);
-        jButton5.setContentAreaFilled(false);
-        jButton5.setBorderPainted(false);
-        jButton6.setOpaque(false);
-        jButton6.setContentAreaFilled(false);
-        jButton6.setBorderPainted(false);
+        sobeButton.setOpaque(false);
+        sobeButton.setContentAreaFilled(false);
+        sobeButton.setBorderPainted(false);
+        esquerdaButton.setOpaque(false);
+        esquerdaButton.setContentAreaFilled(false);
+        esquerdaButton.setBorderPainted(false);
+        direitaButton.setOpaque(false);
+        direitaButton.setContentAreaFilled(false);
+        direitaButton.setBorderPainted(false);
+        desceButton.setOpaque(false);
+        desceButton.setContentAreaFilled(false);
+        desceButton.setBorderPainted(false);
         menos10.setOpaque(false);
         menos10.setContentAreaFilled(false);
         menos10.setBorderPainted(false);
@@ -86,28 +74,28 @@ public class Principal extends javax.swing.JFrame {
         jFrame2 = new javax.swing.JFrame();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        graficoPanel = new javax.swing.JPanel();
         jPanel1 = new Painel();
-        jProgressBar = new javax.swing.JProgressBar();
         statusLabel = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        configPanel = new javax.swing.JPanel();
         iniciarButton = new javax.swing.JToggleButton();
         pararButton = new javax.swing.JToggleButton();
         jButton2 = new javax.swing.JButton();
         mais10 = new javax.swing.JButton();
         menos10 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        textFieldCentroX = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        textFieldCentroY = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        sobeButton = new javax.swing.JButton();
+        esquerdaButton = new javax.swing.JButton();
+        direitaButton = new javax.swing.JButton();
+        desceButton = new javax.swing.JButton();
+        textCentoX = new javax.swing.JTextField();
+        xLavel = new javax.swing.JLabel();
+        yLabel = new javax.swing.JLabel();
+        textCentroY = new javax.swing.JTextField();
+        grauTextField = new javax.swing.JTextField();
+        grausLabel = new javax.swing.JLabel();
         serialComboBox = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
+        progressBar = new javax.swing.JProgressBar();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         mi_limpar = new javax.swing.JMenuItem();
@@ -137,6 +125,9 @@ public class Principal extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("ProjetoMorcego");
+        setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
+        setForeground(java.awt.Color.lightGray);
 
         jLabel1.setFont(new java.awt.Font("Droid Serif", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(4, 2, 2));
@@ -144,8 +135,8 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/prj/morcego/img/morcego-icone.png"))); // NOI18N
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Grafico", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Abyssinica SIL", 0, 10), java.awt.Color.black)); // NOI18N
-        jPanel2.setToolTipText("");
+        graficoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Grafico", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Abyssinica SIL", 0, 10), java.awt.Color.black)); // NOI18N
+        graficoPanel.setToolTipText("");
 
         jPanel1.setBackground(new java.awt.Color(254, 254, 254));
 
@@ -153,41 +144,38 @@ public class Principal extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 576, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 431, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout graficoPanelLayout = new javax.swing.GroupLayout(graficoPanel);
+        graficoPanel.setLayout(graficoPanelLayout);
+        graficoPanelLayout.setHorizontalGroup(
+            graficoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(graficoPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(graficoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(graficoPanelLayout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, graficoPanelLayout.createSequentialGroup()
                         .addComponent(statusLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        graficoPanelLayout.setVerticalGroup(
+            graficoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(graficoPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(statusLabel))
+                .addGap(18, 18, 18)
+                .addComponent(statusLabel)
                 .addGap(6, 6, 6))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Configuraçoes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Abyssinica SIL", 0, 10), java.awt.Color.black)); // NOI18N
+        configPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Configuraçoes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Abyssinica SIL", 0, 10), java.awt.Color.black)); // NOI18N
 
         iniciarButton.setText("Ler");
         iniciarButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -229,53 +217,60 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/prj/morcego/img/seta-cima.png"))); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        sobeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/prj/morcego/img/seta-cima.png"))); // NOI18N
+        sobeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                sobeButtonActionPerformed(evt);
             }
         });
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/prj/morcego/img/seta-esquerda.png"))); // NOI18N
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        esquerdaButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/prj/morcego/img/seta-esquerda.png"))); // NOI18N
+        esquerdaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                esquerdaButtonActionPerformed(evt);
             }
         });
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/prj/morcego/img/seta-direita.png"))); // NOI18N
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        direitaButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/prj/morcego/img/seta-direita.png"))); // NOI18N
+        direitaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                direitaButtonActionPerformed(evt);
             }
         });
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/prj/morcego/img/seta-baixo.png"))); // NOI18N
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        desceButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/prj/morcego/img/seta-baixo.png"))); // NOI18N
+        desceButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                desceButtonActionPerformed(evt);
             }
         });
 
-        textFieldCentroX.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        textFieldCentroX.setText(" ");
+        textCentoX.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        textCentoX.setText(" ");
 
-        jLabel2.setText("0x");
+        xLavel.setText("0x");
 
-        jLabel3.setText("0y");
+        yLabel.setText("0y");
 
-        textFieldCentroY.setText(" ");
-        textFieldCentroY.addActionListener(new java.awt.event.ActionListener() {
+        textCentroY.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        textCentroY.setText(" ");
+        textCentroY.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldCentroYActionPerformed(evt);
+                textCentroYActionPerformed(evt);
             }
         });
 
-        jTextField1.setText(" ");
+        grauTextField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        grauTextField.setText(" ");
+        grauTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                grauTextFieldActionPerformed(evt);
+            }
+        });
 
-        jLabel4.setText("º");
+        grausLabel.setText("º");
 
-        serialComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "dev/ttyUSB0", "dev/ttyUSB1", "COM3", "Bluetooth" }));
+        serialComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "COM3", "dev/ttyUSB0", "dev/ttyUSB1", "Bluetooth" }));
         serialComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 serialComboBoxActionPerformed(evt);
@@ -284,58 +279,51 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel6.setText("USB");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(48, 48, 48)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(46, 46, 46)
-                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(pararButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(mais10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(menos10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(iniciarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        javax.swing.GroupLayout configPanelLayout = new javax.swing.GroupLayout(configPanel);
+        configPanel.setLayout(configPanelLayout);
+        configPanelLayout.setHorizontalGroup(
+            configPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, configPanelLayout.createSequentialGroup()
+                .addGroup(configPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, configPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(configPanelLayout.createSequentialGroup()
+                            .addGap(48, 48, 48)
+                            .addComponent(sobeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(configPanelLayout.createSequentialGroup()
+                            .addComponent(esquerdaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(direitaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(configPanelLayout.createSequentialGroup()
+                            .addGap(46, 46, 46)
+                            .addComponent(desceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(pararButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(configPanelLayout.createSequentialGroup()
+                            .addComponent(mais10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(menos10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(iniciarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, configPanelLayout.createSequentialGroup()
+                        .addGroup(configPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(grausLabel)
+                            .addComponent(yLabel)
+                            .addComponent(xLavel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(configPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(configPanelLayout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(textCentoX, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(grauTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textCentroY, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(configPanelLayout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(serialComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(textFieldCentroY))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(textFieldCentroX, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(26, 26, 26)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, 0)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(serialComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(6, 6, 6))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        configPanelLayout.setVerticalGroup(
+            configPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(configPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(iniciarButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -343,34 +331,34 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(configPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(mais10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(menos10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sobeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(configPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(esquerdaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(direitaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(desceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(configPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(serialComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(textFieldCentroX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(textFieldCentroY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(0, 0, 0)
+                .addGroup(configPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(xLavel)
+                    .addComponent(textCentoX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addGroup(configPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(yLabel)
+                    .addComponent(textCentroY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addGroup(configPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(grausLabel)
+                    .addComponent(grauTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jMenuBar1.setBackground(new java.awt.Color(22, 20, 9));
@@ -413,15 +401,18 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(configPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(graficoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
+                        .addGap(188, 188, 188)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5)
-                        .addGap(0, 174, Short.MAX_VALUE)))
+                        .addGap(0, 201, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, 0)
+                        .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -431,18 +422,16 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(configPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(graficoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.getAccessibleContext().setAccessibleName("");
+        graficoPanel.getAccessibleContext().setAccessibleName("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -500,34 +489,34 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_serialComboBoxActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void desceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desceButtonActionPerformed
         centro_y += 10;
-        textFieldCentroY.setText("" + centro_y);
-    }//GEN-LAST:event_jButton6ActionPerformed
+        textCentroY.setText("" + centro_y);
+    }//GEN-LAST:event_desceButtonActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void direitaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_direitaButtonActionPerformed
         centro_x += 10;
-        textFieldCentroX.setText("" + centro_x);
-    }//GEN-LAST:event_jButton5ActionPerformed
+        textCentoX.setText("" + centro_x);
+    }//GEN-LAST:event_direitaButtonActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void esquerdaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esquerdaButtonActionPerformed
         centro_x -= 10;
-        textFieldCentroX.setText("" + centro_x);
-    }//GEN-LAST:event_jButton4ActionPerformed
+        textCentoX.setText("" + centro_x);
+    }//GEN-LAST:event_esquerdaButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void sobeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sobeButtonActionPerformed
         centro_y -= 10;
-        textFieldCentroY.setText("" + centro_y);
-    }//GEN-LAST:event_jButton3ActionPerformed
+        textCentroY.setText("" + centro_y);
+    }//GEN-LAST:event_sobeButtonActionPerformed
 
     private void menos10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menos10ActionPerformed
         anguloInicial -= 10;
-        jTextField1.setText("" + anguloInicial);
+        grauTextField.setText("" + anguloInicial);
     }//GEN-LAST:event_menos10ActionPerformed
 
     private void mais10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mais10ActionPerformed
         anguloInicial += 10;
-        jTextField1.setText("" + anguloInicial);
+        grauTextField.setText("" + anguloInicial);
     }//GEN-LAST:event_mais10ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -539,9 +528,14 @@ public class Principal extends javax.swing.JFrame {
         pararButton.setSelected(false);
         serial.enviaDados(2);
         serial.close();
-        jProgressBar.setVisible(false);
+        progressBar.setVisible(false);
     }//GEN-LAST:event_pararButtonActionPerformed
 
+    String simula_ang[] = {"0", "10","20","30","40","50", "60","70","80","90","100","110","120","130","140","150","160","170","180"};
+    String simila_dist[] = {"6.0","6.3","6.6","7.3","7.9","9.6","10.3","9.7","9.3","9.0","9.0","9.3","9.7","10.3","9.6","7.9","7.3","6.6","6.3","6.0"};
+    String q_simila_dist[] = {"6.0","6.3","6.6","7.3","7.9","7.5","6.7","8.5","9.3","9.0","9.0","9.3","9.7","10.3","9.6","7.9","7.3","6.6","6.3","6.0"};
+    String c_simila_dist[] = {"6.0","6.3","6.6","7.3","7.9","7.8","7.8","8.3","9.3","9.0","9.0","9.3","9.7","10.3","9.6","7.9","7.3","6.6","6.3","6.0"};
+    
     private void iniciarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarButtonActionPerformed
         setSerialPort();
         System.out.println(serialPort);
@@ -568,7 +562,7 @@ public class Principal extends javax.swing.JFrame {
                 //Cria um plano cartesiano
                 PlanoCartesiano plano = new PlanoCartesiano();
                 setIniciaLeitura();
-                serial.enviaDados(1); //envia 1 para acender o led
+                /*serial.enviaDados(1); //envia 1 para acender o led
                 serial.enviaDados(3); //envia 3 para fazer uma eitura
                 /*for (int i = 0; i < 22; i++) {
                     serial.enviaDados(1); //envia 1 para acender o led
@@ -579,22 +573,30 @@ public class Principal extends javax.swing.JFrame {
                         Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }*/
-                setFinalizaLeitura();
+                /*setFinalizaLeitura();
 
                 serial.close(); /*para de ler a serial*/
+                
+                for (int i = 0; i < simula_ang.length; i++) {
+                    Ponto pont = new Ponto();
+                    pont.setAngulo(Integer.parseInt(simula_ang[i]));
+                    pont.setDist(Double.parseDouble(simila_dist[i])); 
+                    pontosLidos.add(pont);
+                }
+                setFinalizaLeitura();
 
-                pontosLidos = serial.getPontos_lidos();/*salva os pontos, um ponto é composto por uma distância e por um ângulo*/
+                //pontosLidos = serial.getPontos_lidos();/*salva os pontos, um ponto é composto por uma distância e por um ângulo*/
 
                 /*atualiza dos dados mostrados*/
-                textFieldCentroX.setText("" + centro_x);
-                textFieldCentroY.setText("" + centro_y);
+                textCentoX.setText("" + centro_x);
+                textCentroY.setText("" + centro_y);
 
                 plano.setEixo_x(centro_x);
                 plano.setEixo_y(centro_y);
                 System.out.println("Quantidade de pontos lidos " + pontosLidos.size());
                 for (int i = 0; i < pontosLidos.size(); i++) {
                     pontosLidos.get(i).setAnguloInicial(anguloInicial);
-                    pontosLidos.get(i).decompoePonto(escalaX / 80, escalaY / 80);
+                    pontosLidos.get(i).decompoePonto(escalaX / 20, escalaY / 20);
                     System.out.println(pontosLidos.get(i).getX() + " " + pontosLidos.get(i).getY());
                     //adiciona ao plano o ponto
                     plano.addPonto(pontosLidos.get(i));
@@ -605,14 +607,14 @@ public class Principal extends javax.swing.JFrame {
             }
 
             private void setIniciaLeitura() {
-                jProgressBar.setVisible(true);
-                jProgressBar.setIndeterminate(true);
+                progressBar.setVisible(true);
+                progressBar.setIndeterminate(true);
                 statusLabel.setText("Realizando leitura ...");
             }
 
             private void setFinalizaLeitura() {
-                jProgressBar.setVisible(false);
-                jProgressBar.setIndeterminate(false);
+                progressBar.setVisible(false);
+                progressBar.setIndeterminate(false);
                 statusLabel.setText("");
             }
 
@@ -626,9 +628,13 @@ public class Principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_iniciarButtonMouseClicked
 
-    private void textFieldCentroYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldCentroYActionPerformed
+    private void textCentroYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCentroYActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldCentroYActionPerformed
+    }//GEN-LAST:event_textCentroYActionPerformed
+
+    private void grauTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grauTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_grauTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -667,36 +673,36 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel configPanel;
+    private javax.swing.JButton desceButton;
+    private javax.swing.JButton direitaButton;
+    private javax.swing.JButton esquerdaButton;
+    private javax.swing.JPanel graficoPanel;
+    private javax.swing.JTextField grauTextField;
+    private javax.swing.JLabel grausLabel;
     private javax.swing.JToggleButton iniciarButton;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JProgressBar jProgressBar;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton mais10;
     private javax.swing.JButton menos10;
     private javax.swing.JMenuItem mi_limpar;
     private javax.swing.JMenuItem mi_sair;
     private javax.swing.JToggleButton pararButton;
+    private javax.swing.JProgressBar progressBar;
     private javax.swing.JComboBox serialComboBox;
+    private javax.swing.JButton sobeButton;
     private javax.swing.JLabel statusLabel;
-    private javax.swing.JTextField textFieldCentroX;
-    private javax.swing.JTextField textFieldCentroY;
+    private javax.swing.JTextField textCentoX;
+    private javax.swing.JTextField textCentroY;
+    private javax.swing.JLabel xLavel;
+    private javax.swing.JLabel yLabel;
     // End of variables declaration//GEN-END:variables
 }
