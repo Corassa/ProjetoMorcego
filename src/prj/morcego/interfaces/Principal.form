@@ -479,11 +479,13 @@
         <Component class="javax.swing.JComboBox" name="serialComboBox">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="COM3"/>
-                <StringItem index="1" value="dev/ttyUSB0"/>
-                <StringItem index="2" value="dev/ttyUSB1"/>
-                <StringItem index="3" value="Bluetooth"/>
+              <StringArray count="6">
+                <StringItem index="0" value="COM11"/>
+                <StringItem index="1" value="COM10"/>
+                <StringItem index="2" value="COM3"/>
+                <StringItem index="3" value="dev/ttyUSB0"/>
+                <StringItem index="4" value="dev/ttyUSB1"/>
+                <StringItem index="5" value="Bluetooth"/>
               </StringArray>
             </Property>
           </Properties>

@@ -270,7 +270,7 @@ public class Principal extends javax.swing.JFrame {
 
         grausLabel.setText("º");
 
-        serialComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "COM3", "dev/ttyUSB0", "dev/ttyUSB1", "Bluetooth" }));
+        serialComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "COM11", "COM10", "COM3", "dev/ttyUSB0", "dev/ttyUSB1", "Bluetooth" }));
         serialComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 serialComboBoxActionPerformed(evt);
@@ -410,9 +410,7 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5)
                         .addGap(0, 201, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(progressBar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
